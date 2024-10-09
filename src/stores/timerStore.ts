@@ -41,6 +41,9 @@ export const useTimerStore = defineStore('timer', () => {
 
   // Reset the work timer and log the total session (work + break)
   const reset = () => {
+    if (onBreak.value) {
+      stopBreak()
+    }
     logCompleteTime() // Log the full session
     time.value = 0
     breakTime.value = 0 // Reset break time as well
