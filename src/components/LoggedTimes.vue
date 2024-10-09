@@ -6,22 +6,27 @@
             <table class="w-full text-center table-auto min-w-max">
                 <thead>
                     <tr class="border-b border-slate-300 bg-slate-50">
-                        <th class="p-4 text-sm font-normal leading-none text-slate-500">Date</th>
-                        <th class="p-4 text-sm font-normal leading-none text-slate-500">Logged Time</th>
-                        <th class="p-4 text-sm font-normal leading-none text-slate-500">Break Time</th>
+                        <th id='table-header-date' class="p-4 text-sm font-normal leading-none text-slate-500">Date</th>
+                        <th id='table-header-time' class="p-4 text-sm font-normal leading-none text-slate-500">Logged
+                            Time</th>
+                        <th id='table-header-break' class="p-4 text-sm font-normal leading-none text-slate-500">Break
+                            Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(log, idx) in timerStore.loggedTimes" :key="idx" class="text-center">
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <p class="block font-semibold text-sm text-slate-800">{{ log.date }}</p>
+                            <p :id="`table-date-${idx}`" class="block font-semibold text-sm text-slate-800">{{ log.date
+                                }}</p>
                         </td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <p class="block font-semibold text-sm text-slate-800">{{ log.totalTime }}</p>
+                            <p :id="`table-total-time-${idx}`" class="block font-semibold text-sm text-slate-800">{{
+                                log.totalTime }}</p>
                         </td>
                         <td class="p-4 border-b border-slate-200 py-5">
-                            <p class="block font-semibold text-sm text-slate-800">{{ log.breakTime != null ?
-                                log.breakTime : "No break time" }}</p>
+                            <p :id="`table-break-time-${idx}`" class="block font-semibold text-sm text-slate-800">{{
+                                log.breakTime != null ?
+                                    log.breakTime : "No break time" }}</p>
                         </td>
                     </tr>
                 </tbody>
@@ -42,7 +47,6 @@
 <script setup lang="ts">
 import { useTimerStore } from '@/stores/timerStore';
 
-// Directly use the timerStore in the template
 const timerStore = useTimerStore();
 </script>
 
