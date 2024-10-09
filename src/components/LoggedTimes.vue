@@ -32,8 +32,7 @@
         </section>
 
         <div v-if="timerStore.loggedTimes.length >= 1" class="mt-4">
-            <button @click="timerStore.start" class="bg-orange-500 text-white px-4 py-2 rounded mr-2"
-                v-if="!timerStore.isRunning">
+            <button class="bg-orange-500 text-white px-4 py-2 rounded mr-2" v-if="!timerStore.isRunning">
                 Clear data
             </button>
         </div>
