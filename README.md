@@ -1,6 +1,6 @@
-# study-timer-app
+# Study timer app
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a timer application focused on study time, it can keep track of you break times and log them accordingly.
 
 ## Recommended IDE Setup
 
