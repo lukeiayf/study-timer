@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-primary: #4f46e5; /* Default theme */
+  --color-secondary: #22d3ee;
+  --color-background: #ffffff;
+  --color-text: #000000;
+}
+
+.dark-theme {
+  --color-primary: #1e3a8a; /* Dark theme */
+  --color-secondary: #0ea5e9;
+  --color-background: #111827;
+  --color-text: #f9fafb;
+}
+
+.light-theme {
+  --color-primary: #6366f1; /* Light theme */
+  --color-secondary: #67e8f9;
+  --color-background: #f3f4f6;
+  --color-text: #1f2937;
+}

@@ -72,6 +72,10 @@ export const useTimerStore = defineStore('timer', () => {
     }
   }
 
+  const clearLogs = () => {
+    loggedTimes.value = []
+  }
+
   // Log the entire session (work + break) when reset is called
   const logCompleteTime = () => {
     loggedTimes.value.push({
@@ -107,6 +111,7 @@ export const useTimerStore = defineStore('timer', () => {
     pause,
     reset,
     takeBreak,
+    clearLogs,
     formattedTime,
     formattedBreakTime
   }
