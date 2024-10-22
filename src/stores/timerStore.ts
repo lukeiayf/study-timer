@@ -10,6 +10,7 @@ export const useTimerStore = defineStore('timer', () => {
   const onBreak = ref(false)
   const interval: Ref<NodeJS.Timer | null> = ref(null)
   const breakInterval: Ref<NodeJS.Timer | null> = ref(null)
+  const breakLimit = ref(99999)
 
   // Start the main timer
   const start = () => {
@@ -96,6 +97,15 @@ export const useTimerStore = defineStore('timer', () => {
     localStorage.setItem('loggedTimes', JSON.stringify(loggedTimes.value))
   }
 
+  //updates custom break limit
+  const setCustomBreakTime = (customLimit: number) => {
+    if (customLimit > 60) {
+      breakLimit.value = 99999
+    } else {
+      breakLimit.value = customLimit
+    }
+  }
+
   // Format the work time
   const formattedTime = computed(() => {
     const minutes = Math.floor(time.value / 60)
@@ -118,13 +128,15 @@ export const useTimerStore = defineStore('timer', () => {
     loggedTimes,
     isRunning,
     onBreak,
+    formattedTime,
+    formattedBreakTime,
+    breakLimit,
     start,
     pause,
     reset,
     takeBreak,
     clearLogs,
     getLogs,
-    formattedTime,
-    formattedBreakTime
+    setCustomBreakTime
   }
 })
