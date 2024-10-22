@@ -2,17 +2,19 @@
     <div class="flex flex-col items-center justify-center ">
         <h3 class="text-4xl font-medium mb-4 text-text">Logged Times</h3>
         <div v-if="timerStore.loggedTimes.length >= 1"
-            class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+            class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-background bg-clip-border">
             <div class="overflow-y-auto max-h-80 w-full">
                 <table class="w-full text-center table-auto min-w-max">
                     <thead>
-                        <tr class="border-b border-slate-300 bg-slate-50">
-                            <th id='table-header-date' class="p-4 text-sm font-normal leading-none text-slate-500">Date
+                        <tr class="border-b border-slate-300 bg-background">
+                            <th id='table-header-date' class="p-4 text-sm font-normal leading-none text-text">#
                             </th>
-                            <th id='table-header-time' class="p-4 text-sm font-normal leading-none text-slate-500">
+                            <th id='table-header-date' class="p-4 text-sm font-normal leading-none text-text">Date
+                            </th>
+                            <th id='table-header-time' class="p-4 text-sm font-normal leading-none text-text">
                                 Logged
                                 Time</th>
-                            <th id='table-header-break' class="p-4 text-sm font-normal leading-none text-slate-500">
+                            <th id='table-header-break' class="p-4 text-sm font-normal leading-none text-text">
                                 Break
                                 Time</th>
                         </tr>
@@ -20,16 +22,21 @@
                     <tbody>
                         <tr v-for="(log, idx) in timerStore.loggedTimes" :key="idx" class="text-center">
                             <td class="p-4 border-b border-slate-200 py-5">
-                                <p :id="`table-date-${idx}`" class="block font-semibold text-sm text-slate-800">{{
-                                    log.date
-                                    }}</p>
+                                <p :id="`table-number-${idx}`" class="block font-semibold text-sm text-text">{{
+                                    idx + 1
+                                }}</p>
                             </td>
                             <td class="p-4 border-b border-slate-200 py-5">
-                                <p :id="`table-total-time-${idx}`" class="block font-semibold text-sm text-slate-800">{{
+                                <p :id="`table-date-${idx}`" class="block font-semibold text-sm text-text">{{
+                                    log.date
+                                }}</p>
+                            </td>
+                            <td class="p-4 border-b border-slate-200 py-5">
+                                <p :id="`table-total-time-${idx}`" class="block font-semibold text-sm text-text">{{
                                     log.totalTime }}</p>
                             </td>
                             <td class="p-4 border-b border-slate-200 py-5">
-                                <p :id="`table-break-time-${idx}`" class="block font-semibold text-sm text-slate-800">{{
+                                <p :id="`table-break-time-${idx}`" class="block font-semibold text-sm text-text">{{
                                     log.breakTime != null ?
                                         log.breakTime : "No break time" }}</p>
                             </td>
