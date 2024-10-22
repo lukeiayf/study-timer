@@ -3,9 +3,14 @@
         <h1 class="text-4xl font-bold mb-4 text-text">Study Timer</h1>
         <div class="text-9xl font-mono text-text" :class="{ 'flash': timerStore.onBreak }">{{ timerStore.formattedTime
             }}</div>
+        <div class="text-2xl font-mono text-text" v-if="timerStore.onBreak && timerStore.breakLimit <= 60">Break time
+            limit: {{
+                timerStore.formattedBreakTimeLimit
+            }}
+        </div>
         <div v-if="timerStore.breakTime || timerStore.onBreak" class="text-2xl font-mono text-text">Time on break: {{
             timerStore.formattedBreakTime
-        }}
+            }}
         </div>
         <div class="flex mt-4 min-w-full justify-center items-center">
             <button id="start-button" @click="timerStore.start"

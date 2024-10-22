@@ -11,6 +11,7 @@ export const useTimerStore = defineStore('timer', () => {
   const interval: Ref<NodeJS.Timer | null> = ref(null)
   const breakInterval: Ref<NodeJS.Timer | null> = ref(null)
   const breakLimit = ref(99999)
+  const breakLimitInterval = ref(0)
 
   // Start the main timer
   const start = () => {
@@ -56,8 +57,13 @@ export const useTimerStore = defineStore('timer', () => {
     if (!onBreak.value && isRunning.value) {
       pause() // Pause the main timer
       onBreak.value = true
+      breakLimitInterval.value = breakLimit.value * 60
+
       breakInterval.value = setInterval(() => {
         breakTime.value++
+        if (breakLimit.value <= 60) {
+          breakLimitInterval.value--
+        }
       }, 1000)
     }
   }
@@ -122,6 +128,13 @@ export const useTimerStore = defineStore('timer', () => {
     return `${String(hours).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
   })
 
+  const formattedBreakTimeLimit = computed(() => {
+    const minutes = Math.floor(breakLimitInterval.value / 60)
+    const seconds = breakLimitInterval.value % 60
+    const hours = Math.floor(minutes / 60)
+    return `${String(hours).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+  })
+
   return {
     time,
     breakTime,
@@ -131,6 +144,7 @@ export const useTimerStore = defineStore('timer', () => {
     formattedTime,
     formattedBreakTime,
     breakLimit,
+    formattedBreakTimeLimit,
     start,
     pause,
     reset,
