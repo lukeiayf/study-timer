@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center justify-center ">
-        <h3 class="text-4xl font-medium mb-4">Logged Times</h3>
+        <h3 class="text-4xl font-medium mb-4 text-text">Logged Times</h3>
         <div v-if="timerStore.loggedTimes.length >= 1"
             class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
             <div class="overflow-y-auto max-h-80 w-full">
@@ -39,7 +39,7 @@
             </div>
         </div>
         <section v-else class="w-full text-center min-w-max h-12 mt-2">
-            <p class="block font-semibold text-sm text-slate-800">No times registered</p>
+            <p class="block font-semibold text-sm text-slate-800 text-text italic">No times registered</p>
         </section>
 
         <div v-if="timerStore.loggedTimes.length >= 1" class="mt-4">
@@ -53,8 +53,13 @@
 
 <script setup lang="ts">
 import { useTimerStore } from '@/stores/timerStore';
+import { onMounted } from 'vue';
 
 const timerStore = useTimerStore();
+
+onMounted(() => {
+    timerStore.getLogs();
+})
 </script>
 
 <style scoped></style>

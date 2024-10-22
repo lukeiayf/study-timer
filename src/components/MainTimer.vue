@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col items-center justify-center my-20">
-        <h1 class="text-4xl font-bold mb-4">Study Timer</h1>
-        <div class="text-9xl font-mono" :class="{ 'flash': timerStore.onBreak }">{{ timerStore.formattedTime
+        <h1 class="text-4xl font-bold mb-4 text-text">Study Timer</h1>
+        <div class="text-9xl font-mono text-text" :class="{ 'flash': timerStore.onBreak }">{{ timerStore.formattedTime
             }}</div>
-        <div v-if="timerStore.breakTime || timerStore.onBreak" class="text-2xl font-mono">Time on break: {{
+        <div v-if="timerStore.breakTime || timerStore.onBreak" class="text-2xl font-mono text-text">Time on break: {{
             timerStore.formattedBreakTime
         }}
         </div>
         <div class="flex mt-4 min-w-full justify-center items-center">
-            <button id="start-button" @click="timerStore.start" class="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+            <button id="start-button" @click="timerStore.start" class="bg-secondary text-white px-4 py-2 rounded mr-2"
                 v-if="!timerStore.isRunning">
                 {{ timerStore.onBreak ? 'Finish break' : 'Start' }}
             </button>

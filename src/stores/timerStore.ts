@@ -72,8 +72,16 @@ export const useTimerStore = defineStore('timer', () => {
     }
   }
 
+  //Get existing logs from local store
+  const getLogs = () => {
+    if (localStorage.getItem('loggedTimes') != null) {
+      loggedTimes.value = JSON.parse(localStorage.getItem('loggedTimes') as string)
+    }
+  }
+
   const clearLogs = () => {
     loggedTimes.value = []
+    localStorage.removeItem('loggedTimes')
   }
 
   // Log the entire session (work + break) when reset is called
@@ -83,6 +91,9 @@ export const useTimerStore = defineStore('timer', () => {
       totalTime: formattedTime.value,
       breakTime: formattedBreakTime.value
     })
+
+    //Save logs to localStorage so it can be retrieved
+    localStorage.setItem('loggedTimes', JSON.stringify(loggedTimes.value))
   }
 
   // Format the work time
@@ -112,6 +123,7 @@ export const useTimerStore = defineStore('timer', () => {
     reset,
     takeBreak,
     clearLogs,
+    getLogs,
     formattedTime,
     formattedBreakTime
   }
