@@ -8,8 +8,8 @@ export const useTimerStore = defineStore('timer', () => {
   const loggedTimes: Ref<LoggedTime[]> = ref([])
   const isRunning = ref(false)
   const onBreak = ref(false)
-  const interval: Ref<NodeJS.Timer | null> = ref(null)
-  const breakInterval: Ref<NodeJS.Timer | null> = ref(null)
+  const interval: Ref<any> = ref(null)
+  const breakInterval: Ref<any> = ref(null)
   const breakLimit = ref(99999)
   const breakLimitInterval = ref(0)
 

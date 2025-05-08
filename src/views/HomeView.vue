@@ -12,6 +12,6 @@ import ThemeToggler from '@/components/ThemeToggler.vue';
 import Timer from '@/components/MainTimer.vue';
 import BreakRange from '@/components/BreakRange.vue'
 
-
+console.log('HomeView is mounting')
 </script>
 <style></style>
